@@ -1,14 +1,18 @@
 name := "LMS"
 
-version := "0.2"
+version := "0.3-SNAPSHOT"
 
 organization := "EPFL"
 
 resolvers += ScalaToolsSnapshots
 
-resolvers += dropboxScalaTestRepo
+//resolvers += dropboxScalaTestRepo
 
-scalaOrganization := "org.scala-lang"
+resolvers += prereleaseScalaTest
+
+//scalaHome := Some(file("/Users/tiark/scala/build/pack"))
+
+scalaOrganization := "org.scala-lang.virtualized"
 
 //scalaBinaryVersion := virtScala // necessary??
 
