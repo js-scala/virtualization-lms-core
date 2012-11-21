@@ -187,13 +187,13 @@ trait SimplifyTransform extends internal.FatScheduling {
     // SIMPLIFY! <--- multiple steps necessary???
   
     def withEffectContext(body: =>List[Stm]): List[Stm] = {
-      val save = context
-      context = Nil
+      val save = context.ref
+      context()= Nil
       val scope = body
-      val leftovereffects = context.filterNot((scope.flatMap(_.lhs)) contains _)
+      val leftovereffects = context().filterNot((scope.flatMap(_.lhs)) contains _)
       if (leftovereffects.nonEmpty) 
         printlog("warning: transformation left effect context (will be discarded): "+leftovereffects)
-      context = save
+      context()= save
       scope
     }
   
